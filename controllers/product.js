@@ -121,13 +121,14 @@ exports.updateProduct = (req,res)=>{
         }
 
         //Save to the DB
-        product.save((err,product)=>{
+        product.save((err,prod)=>{
             if(err){
                 return res.status(400).json({
                     error:"Updation Failed"
                 })
             }
         })
+        console.log(product)
         res.json(product);
     })
 }
@@ -147,7 +148,7 @@ exports.getAllProducts = (req,res)=>{
                 error:"NO product FOUND"
             })
         }
-        return res.json(product);
+        return res.json(products);
     })
 }
 

@@ -22,7 +22,7 @@ mongoose.connect(mongoDB, {useNewUrlParser: true,
     console.log("DB connected");
 });
 //middleWare
-app.use(express.urlencoded());
+app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 app.use(cors());
 //Routes
@@ -44,5 +44,5 @@ app.use("/api",productRoutes);
 //Starting a server
 const port = process.env.PORT||8000;
 app.listen(port,()=>{
-    console.log("Server is running at port 3000");
+    console.log("Server is running at port "+port);
 });
