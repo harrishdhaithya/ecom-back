@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.methods={
     authenticate:function(plainpassword){
-        console.log([this.securePassword(plainpassword),this.encry_password])
+        // console.log([this.securePassword(plainpassword),this.encry_password])
         return this.securePassword(plainpassword)===this.encry_password;
     },
     securePassword:function(plainpassword){

@@ -54,6 +54,7 @@ exports.createProduct = (req,res)=>{
             product.photo.data = fs.readFileSync(file.photo.path);
             product.photo.contentType = file.photo.type;
         }
+        
 
         //Save to the DB
         product.save((err,product)=>{
@@ -138,7 +139,6 @@ exports.getAllProducts = (req,res)=>{
     let limit = req.query.limit?parseInt(req.query.limit):8;
     let sortBy = req.query.sortBy?req.query.sortBy:"_id";
     Product.find()
-    .select("-photo")
     .populate("category")
     .sort([[sortBy,"asc"]])
     .limit(limit)
@@ -153,7 +153,7 @@ exports.getAllProducts = (req,res)=>{
 }
 
 exports.updateStock = (req,res,next)=>{
-    let myOperations = req.body.order.producs.map((prod)=>{
+    let myOperations = req.body.order.products.map((prod)=>{
         return {
             updateOne:{
                 filter:{_id:prod._id},
